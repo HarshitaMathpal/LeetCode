@@ -1,0 +1,34 @@
+You are given a sorted unique integer array nums.
+
+Return the smallest sorted list of ranges that cover all the numbers in the array exactly. That is, each element of nums is covered by exactly one of the ranges, and there is no integer x such that x is in one of the ranges but not in nums.
+
+Each range [a,b] in the list should be output as:
+
+"a->b" if a != b
+"a" if a == b
+
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List <String> l = new ArrayList<>();
+        if (nums.length == 0) 
+            return l;
+        int start=nums[0];
+        int k=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==k+1){
+                k=nums[i];
+            }
+            else{
+                l.add(k == start ?
+                         start + "" :
+                         start + "->" + k);
+                start=nums[i];
+                k=nums[i];
+            }
+        }
+        l.add(k == start ?
+                 start + "" :
+                 start + "->" + k);
+        return l;
+    }
+}
