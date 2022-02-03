@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        return checkPow(n);
+    }
+    public static boolean checkPow(int n){
+        
+        if(n==1){
+            return true;
+        }
+        if(n%2!=0){
+            return false;
+        }
+        if(n==0){
+            return false;
+        }
+        else{
+            return checkPow(n/2);
+        }
+        
+    }
+}
