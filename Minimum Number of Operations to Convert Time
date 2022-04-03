@@ -1,0 +1,38 @@
+class Solution {
+    public int convertTime(String current, String correct) {
+         String[] Curr = current.split(":");
+        String[] Corr = correct.split(":");
+        int[] arr = new int[2];
+        int[] carr = new int[2];
+         
+        arr[0] =  Integer.parseInt(Curr[0])*60 + Integer.parseInt(Curr[1]);
+        carr[0] =  Integer.parseInt(Corr[0])*60 + Integer.parseInt(Corr[1]);
+        
+        int n= Math.abs(arr[0]-carr[0]);
+        System.out.println(n);
+  //      int a=0,b=0,c=0,d=0,x=0;
+   //     int[] arr={1,5,15,60};
+  //      int t=(hourdiff*60)+mindiff;
+        int c = 0;
+        while(n != 0){
+            if(n>=60){
+                c = c + n/60;
+                n = n%60;
+            }
+            if(n>=15){
+                c = c + n/15;
+                n = n%15;
+            }
+            else if(n>=5 && n<15){
+                c = c + n/5;
+                n = n%5;
+            }
+            else if(n>=1 && n<5){
+                c = c + n/1;
+                n = n%1;
+            }
+        }
+        
+        return c;
+    }
+}
