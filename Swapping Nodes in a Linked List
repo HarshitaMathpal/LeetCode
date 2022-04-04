@@ -1,0 +1,15 @@
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode temp=head;
+        List<ListNode> l = new ArrayList<>();
+        while(temp!=null){
+            l.add(temp);
+            temp=temp.next;
+        }
+        int len=l.size();
+        int val=l.get(k-1).val;
+        l.get(k-1).val=l.get(len-k).val;
+        l.get(len-k).val=val;
+        return head;
+    }
+}
