@@ -1,0 +1,24 @@
+class Solution {
+    public int addDigits(int num) {
+        if(num == 0 || size(num) == 1) {
+            return num;
+        }
+        int size = size(num);
+        int sum = 0;
+        for (int i = 1 ; i <= size ; i++) {
+            int ld = num % 10;
+            sum += ld;
+            num = num/10;
+        }
+        return addDigits(sum);
+    }
+    public int size(int num) {
+        int count = 0;
+        while (num != 0) {
+            num = num / 10;
+            ++count;
+        }
+        return count;
+    
+    }
+}
