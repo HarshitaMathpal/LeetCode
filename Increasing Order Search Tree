@@ -1,0 +1,19 @@
+class Solution {
+    private TreeNode head = null, parent = null;
+    public TreeNode increasingBST(TreeNode root) {
+        buildTree(root);
+        return head;
+    }
+     private void buildTree(TreeNode root){
+        if(root == null) return;
+        buildTree(root.left);
+        if(head == null) head = root;
+        if(parent == null) parent = root;
+        else {
+            parent.right = root;
+            parent = root;
+            root.left = null;
+        }
+        buildTree(root.right); 
+    }
+}
