@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int index = 0, count, t = nums.length / 3;
+        List<Integer> l = new ArrayList<>();
+        for(int i = 0; i < nums.length; i++) {
+            if( map.containsKey(nums[i]) )
+                continue;
+            count = 0;
+            index = i;
+            map.put(nums[i], i);
+            while( index < nums.length ) {
+                if( nums[index] == nums[i] )
+                    count++;
+                if( count > t ) {
+                    l.add(nums[i]);
+                    break;
+                }
+                index++;
+            }
+        }
+        return l;
+    }
+}
