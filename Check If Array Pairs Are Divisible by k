@@ -1,0 +1,22 @@
+class Solution {
+    public boolean canArrange(int[] arr, int k) {
+        int[] map=new int[k];
+        for(int i=0;i<arr.length;i++){
+            int rem=((arr[i]%k)+k)%k;
+            map[rem]+=1;
+        }
+        for(int i=0;i<=k/2;i++){
+            if(i==0){
+                if(map[i]%2!=0){
+                    return false;
+                }
+            }
+            else{
+                int y=k-i;
+                if(map[i]!=map[y])
+                    return false;
+            }
+        }
+        return true;
+    }
+}
