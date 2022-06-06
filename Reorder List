@@ -1,0 +1,40 @@
+class Solution {
+    public void reorderList(ListNode head) {
+        ListNode middle = middleNode(head);
+        ListNode reverse = reverseNode(middle);
+        
+        ListNode ans = new ListNode();
+        ListNode temp=ans;
+        
+        while(head!=null && reverse!=null){
+            ans.next=head;
+            head=head.next;
+            ans=ans.next;
+            ans.next=reverse;
+            reverse=reverse.next;
+            ans=ans.next;
+        }
+        ans.next=null;
+        head=temp;
+    }
+    
+    public static ListNode middleNode(ListNode head){
+        ListNode turtle =head;
+        ListNode hare=head;
+        while(hare!=null && hare.next!=null){
+            turtle=turtle.next;
+            hare=hare.next.next;
+        }
+        return turtle;
+    }
+    
+    public static ListNode reverseNode(ListNode head){
+        if(head== null || head.next==null){
+            return head;
+        }
+        ListNode newhead = reverseNode(head.next);
+        head.next.next=head;
+        head.next=null;
+        return newhead;
+    }
+}
