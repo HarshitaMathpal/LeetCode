@@ -1,0 +1,17 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int[] ans = new int[2];
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i:nums){
+            hm.put(i,hm.getOrDefault(i,0)+1);
+        }
+        int j=0;
+        for(int i:nums){
+            if(hm.get(i)==1){
+                ans[j]=i;
+                j++;
+            }
+        }
+        return ans;
+    }
+}
