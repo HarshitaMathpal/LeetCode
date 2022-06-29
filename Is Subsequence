@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sindx =0;
+        int tindx =0;
+        while(sindx < s.length() && tindx < t.length()){
+            char cs = s.charAt(sindx);
+            char ts = t.charAt(tindx);
+            if(cs == ts){
+                sindx++;
+            }
+                tindx++;
+        }
+        if(sindx != s.length()){
+            return false;
+        }
+        return true;
+    }
+}
