@@ -1,0 +1,29 @@
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head==null || head.next==null)
+            return null;
+        
+        ListNode hare = head;
+        ListNode turtle = head;
+        
+        while(true){
+            
+            if(hare.next!=null && hare.next.next!=null){
+                hare = hare.next.next;
+                turtle = turtle.next;
+            }
+            else{
+                return null;
+            }
+            if(hare == turtle)
+                break;
+        }
+        
+        while(head != turtle){
+            head = head.next;
+            turtle = turtle.next;
+        }
+        return turtle;
+        
+    }
+}
