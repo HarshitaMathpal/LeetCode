@@ -1,0 +1,42 @@
+class Solution {
+    public boolean isRobotBounded(String str) {
+        int x = 0;
+        int y = 0;
+        int d = 90;
+        
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i) == 'G'){
+                if(d == 90){
+                    y++;
+                }
+                if(d == 180){
+                    x--;
+                }
+                if(d == 270){
+                    y--;
+                }
+                if(d == 360){
+                    x++;
+                }
+            }
+            else if(str.charAt(i) == 'L'){
+                if(d == 360)
+                    d = 90;
+                else
+                    d += 90;
+            }
+            else if(str.charAt(i) == 'R'){
+                if(d == 90)
+                    d = 360;
+                else
+                    d -= 90;
+            }
+        }
+        
+        if((x == 0 && y == 0) || d != 90)
+            return true;
+        
+        
+        return false;
+    }
+}
