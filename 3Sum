@@ -1,31 +1,44 @@
 class Solution {
-    public List<List<Integer>> threeSum(int[] arr) {
-        List<List> ans = new ArrayList<>();
-
-        for(int i = 0; i < nums.length - 2; i++){
-            if(i == 0 || (i > 0 && nums[i] != nums[i - 1])){
-                int l = i + 1, r = nums.length - 1;
-            
-                while(l < r){
-                int sum = nums[l] + nums[i] + nums[r];
-            
-                if(sum == 0){
-                  ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
-                   while(l < r && nums[l] == nums[l + 1]) l++;
-                   while(l < r && nums[r] == nums[r - 1]) r--;
-                   l++;
-                   r--;
-                }else if(sum < 0)
-                   l++;
-                else
-                  r--;
-           }
-        
-           l++;
-           r--;
-       }
-    }  
-       
-    return ans;
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> resultSet = new ArrayList<>();
+        Arrays.sort(nums);
+        int n = nums.length;
+        for(int i=0;i<n-2;i++){
+            if(nums[i] > 0){
+                break;
+            }
+            if(i>0 && nums[i] == nums[i-1]){
+                continue;
+            }
+            int start = i+1;
+            int end = n-1;
+            int tripletSum = 0;
+            while(start < end){
+                tripletSum = nums[i] + nums[start] + nums[end];
+                if(tripletSum < 0){
+                    start ++ ;
+                }
+                else if(tripletSum > 0){
+                    end--;
+                }
+                else{
+                    List<Integer> triplet = Arrays.asList(nums[i],nums[start],nums[end]);
+                   resultSet.add(triplet);
+                   //increment the start pointer
+                   start++;
+                   //If there are elements with the same value then discard them
+                   while(start < end && nums[start] == nums[start-1]){
+                       start++;
+                   }
+                   // decrement the end pointer
+                   end--;
+                   //If there are elements with the same value then discard them
+                   while(start < end && nums[end] == nums[end+1]){
+                       end--;
+                   }
+                }
+            }
+        }
+        return resultSet;
     }
 }
