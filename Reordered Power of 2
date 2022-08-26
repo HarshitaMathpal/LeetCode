@@ -1,0 +1,34 @@
+class Solution {
+    public boolean reorderedPowerOf2(int n) {
+        int[] count = count(n);
+        int i = 0,power = 1;
+        while(i < 31){
+            int[] powercount = count(power);
+            if(isEqual(count,powercount)){
+                return true;
+            }
+            i++;
+            power *= 2;
+        }
+        return false;
+    }
+    
+    static int[] count(int n){
+        int[] count = new int[10];
+        while(n != 0){
+            count[n%10]++;
+            n /= 10;
+        }
+        
+        return count;
+    }
+    
+    static boolean isEqual(int[] a, int[] b){
+        for (int i = 0; i < b.length; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
