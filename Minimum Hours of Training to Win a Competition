@@ -1,0 +1,24 @@
+class Solution {
+    public int minNumberOfHours(int initialEnergy, int initialExperience, int[] energy, int[] experience) {
+        int minE = 0, minExp = 0;
+        for(int i = 0; i < energy.length; i++){
+            if(initialEnergy <= energy[i]){
+                minE += (energy[i] - initialEnergy + 1);
+                initialEnergy += (energy[i] - initialEnergy + 1);
+                initialEnergy -= energy[i];
+            }else{
+                initialEnergy -= energy[i];
+            }
+        }
+        for(int i = 0; i < experience.length; i++){
+            if(initialExperience <= experience[i]){
+                minExp += (experience[i] - initialExperience + 1);
+                initialExperience += (experience[i] - initialExperience + 1);
+                initialExperience += experience[i];
+            }else{
+                initialExperience += experience[i];
+            }
+        }
+        return minE + minExp;
+    }
+}
