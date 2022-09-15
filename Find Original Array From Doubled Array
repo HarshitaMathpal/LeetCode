@@ -1,0 +1,33 @@
+class Solution {
+    public int[] findOriginalArray(int[] changed) {
+        Arrays.sort(changed);
+        int n = changed.length;
+        int[] ans = new int[n/2];
+        if(n%2 != 0){
+            return new int[] {};
+        }
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i:changed){
+            hm.put(i,hm.getOrDefault(i,0)+1);
+        }
+        int k=0;
+        for(int i=0;i<n;i++){
+            if(hm.containsKey(changed[i])){
+                if(hm.containsKey(changed[i]*2)){
+                    ans[k++] = changed[i];
+                    
+                    hm.put(changed[i],hm.get(changed[i])-1);
+                    hm.put(changed[i]*2,hm.get(changed[i]*2)-1);
+                    
+                    if(hm.get(changed[i])<=0) 
+                        hm.remove(changed[i]);
+                    if(hm.containsKey(changed[i]*2) && hm.get(changed[i]*2)<=0) 
+                        hm.remove(changed[i]*2);
+                }
+                else return new int[0];
+            }
+        }
+        
+        return ans;
+    }
+}
