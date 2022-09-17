@@ -1,0 +1,18 @@
+class Solution {
+    public int countPrefixes(String[] words, String s) {
+        // int c = 0;
+        // for(int i=0;i<words.length;i++){
+        //     if(words[i].charAt(0) == s.charAt(0) && words[i].length() <= s.length()){
+        //         c++;
+        //     }
+        // }
+        // return c;
+        int count = 0;
+		for (String w : words){
+			if (s.startsWith(w)){
+				count += 1;
+			}
+		}
+		return count;
+    }
+}
