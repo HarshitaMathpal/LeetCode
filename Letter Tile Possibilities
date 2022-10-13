@@ -1,0 +1,24 @@
+class Solution {
+    public int numTilePossibilities(String str) {
+        int[] freq = new int[26];
+        for(int i=0;i<str.length();i++){
+            int indx = str.charAt(i)-'A';
+            freq[indx]++;
+        }
+        return tile_Possibility(freq, str);
+    }
+    public static int tile_Possibility(int[] freq,String ans){   
+        // System.out.println(ans);
+        int count = 0;
+        for(int i=0;i<freq.length;i++){
+            if(freq[i] >= 1){
+                char ch = (char)(i+'A');
+                freq[i]--;
+                count += tile_Possibility(freq,ans+ch) + 1;
+                freq[i]++;
+            }
+        }
+        return count;
+    
+    }
+}
