@@ -1,0 +1,23 @@
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        current.add(0);
+        findPath(0,graph,graph.length-1,current,ans);
+        return ans;
+    }
+
+    public void findPath(int src,int[][] graph,int dest,List<Integer> current,List<List<Integer>> ans){
+        if(src==dest){
+            ans.add(new ArrayList(current));
+            return;
+        }
+
+        for(int currvertex:graph[src]){
+            current.add(currvertex);
+            findPath(currvertex,graph,dest,current,ans);
+            current.remove(current.size()-1);
+        }
+        return;
+    }
+}
